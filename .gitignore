@@ -1,0 +1,20 @@
+# Compiler files
+cache/
+out/
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*
+/broadcast/*/31337/
+
+cache/
+out/
+.vscode/
+.env
+.encryptedKey
+broadcast/
+
+node_modules
+package-lock.json
+
+artifacts/
