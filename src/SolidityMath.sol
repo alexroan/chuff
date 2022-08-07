@@ -39,4 +39,13 @@ contract SolidityMath is ISafeMath {
     {
         return a / b;
     }
+
+    function mod(uint256 a, uint256 b)
+        external
+        pure
+        override
+        returns (uint256)
+    {
+        return a % b;
+    }
 }

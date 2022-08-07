@@ -9,4 +9,6 @@ interface ISafeMath {
     function sub(uint256, uint256) external returns (uint256);
 
     function div(uint256, uint256) external returns (uint256);
+
+    function mod(uint256, uint256) external returns (uint256);
 }

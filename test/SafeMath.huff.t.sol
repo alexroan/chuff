@@ -127,3 +127,22 @@ contract SafeMathTest__add is SafeMathTestBase {
         s_huff.add(TWO, MAX);
     }
 }
+
+contract SafeMathTest__mod is SafeMathTestBase {
+    function testModGasHuff() public {
+        uint256 result = s_huff.mod(MAX, FOUR);
+    }
+
+    function testModGasSolidity() public {
+        uint256 result = s_solidity.mod(MAX, FOUR);
+    }
+
+    function testModSuccess() public {
+        assertEq(s_huff.mod(FOUR, TWO), ZERO);
+    }
+
+    function testModZeroBReverts() public {
+        vm.expectRevert();
+        s_huff.mod(FOUR, ZERO);
+    }
+}
