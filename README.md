@@ -42,10 +42,13 @@ make
 
 ## Gas Comparison
 
-Gas comparisons between the Huff implementation and native Solidity checked math can be found in the test files. The naming convention for these comparisons are: 
+Gas comparison tests between the Huff implementation and native Solidity checked math can be found in the [test files](https://github.com/alexroan/huff-math/tree/master/test). The naming convention for these comparisons are:
+
 ```
 function test<function_name>Gas[Huff/Solidity]() public {...}
 ```
+
+Results can be found in [.gas-snapshot](https://github.com/alexroan/huff-math/blob/master/.gas-snapshot) in the repo root.
 
 
 ## Testing
