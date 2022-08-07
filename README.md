@@ -2,6 +2,8 @@
 
 OpenZeppelin's SafeMath library implemented as a contract in the [Huff language](https://github.com/huff-language).
 
+Spoiler: [It's cheap](https://github.com/alexroan/huff-math/blob/master/.gas-snapshot#L1-L2).
+
 # Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
