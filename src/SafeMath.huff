@@ -6,10 +6,10 @@
 	// Load our numbers from calldata,
 	// Do some switcharoo so we can compare
 	// a against a+b, if a is greater, empty revert
-	0x04 calldataload 0x24 calldataload 	// [b, a]
-	dup2 add         	// [a+b, a]
-	dup1 swap2 gt		// [(a > a+b), a+b]
-	empty_revert jumpi			// jump to fail if a greater than (a+b)
+	0x04 calldataload 0x24 calldataload  // [b, a]
+	dup2 add                             // [a+b, a]
+	dup1 swap2 gt                        // [(a > a+b), a+b]
+	empty_revert jumpi                   // jump to fail if a greater than (a+b)
 
 	// Return our new number.
 	0x00 mstore // Store our number in memory.
@@ -22,10 +22,10 @@
 	// Load our numbers from calldata,
 	// Do some switcharoo so we can compare
 	// a against a-b, if a is less, empty revert
-	0x04 calldataload 0x24 calldataload 	// [b, a]
-	dup2 sub         	// [a-b, a]
-	dup1 swap2 lt			// [(a < a-b), a-b]
-	empty_revert jumpi			// jump to fail if a less than (a-b)
+	0x04 calldataload 0x24 calldataload  // [b, a]
+	dup2 sub                             // [a-b, a]
+	dup1 swap2 lt                        // [(a < a-b), a-b]
+	empty_revert jumpi                   // jump to fail if a less than (a-b)
 
 	// Return a number from the stack.
 	0x00 mstore // Store our number in memory.
@@ -35,16 +35,16 @@
 /// @notice Multiply two uint256 from calldata together
 /// @dev Revert if overflow
 #define macro MATH__MUL(empty_revert) = takes(0) returns (1) {
-	0x04 calldataload 0x24 calldataload 	// [b,a]
-	0x00 dup2 dup4 0x00 eq								// [(0==a),b,0,b,a]
-	empty_revert jumpi      							// Jump to fail if a == 0 [b,0,b,a]
-	eq																		// [(b==0),b,a]
-	empty_revert jumpi										// Jump to fail if b == 0 [b,a]
-	dup2 dup2 mul												  // [(b*a),b,a]
+	0x04 calldataload 0x24 calldataload  // [b,a]
+	0x00 dup2 dup4 0x00 eq               // [(0==a),b,0,b,a]
+	empty_revert jumpi                   // Jump to fail if a == 0 [b,0,b,a]
+	eq                                   // [(b==0),b,a]
+	empty_revert jumpi                   // Jump to fail if b == 0 [b,a]
+	dup2 dup2 mul                        // [(b*a),b,a]
 
 	// Final check: (a*b) / b = a
-	swap2 dup3 div eq										  // [((b*a)/a)==b,(b*a)]
-	iszero empty_revert jumpi							// Jump to fail if (b*a) / a != b. else: [(b*a)]
+	swap2 dup3 div eq                    // [((b*a)/a)==b,(b*a)]
+	iszero empty_revert jumpi            // Jump to fail if (b*a) / a != b. else: [(b*a)]
 
 	// Return our new number.
 	0x00 mstore // Store our number in memory.
@@ -54,14 +54,14 @@
 /// @notice Divide two uint256 from calldata together
 /// @dev Revert if either value is zero or if result is malformed
 #define macro MATH__DIV(empty_revert) = takes(0) returns (1) {
-	0x04 calldataload 0x24 calldataload 	// [b,a]
-	0x00 dup2 dup4 0x00 eq								// [(0==a),b,0,b,a]
-	empty_revert jumpi      							// Jump to fail if a == 0 [b,0,b,a]
-	eq																		// [(b==0),b,a]
-	empty_revert jumpi										// Jump to fail if b == 0 [b,a]
-	dup2 dup2 swap1 div										// [(a/b),b,a]
-	swap2 swap1 dup3											// [(a/b),b,a,(a/b)]
-	mul eq iszero empty_revert jumpi			// fail if (a/b) * b != a. else [(a/b)]
+	0x04 calldataload 0x24 calldataload  // [b,a]
+	0x00 dup2 dup4 0x00 eq               // [(0==a),b,0,b,a]
+	empty_revert jumpi                   // Jump to fail if a == 0 [b,0,b,a]
+	eq                                   // [(b==0),b,a]
+	empty_revert jumpi                   // Jump to fail if b == 0 [b,a]
+	dup2 dup2 swap1 div                  // [(a/b),b,a]
+	swap2 swap1 dup3                     // [(a/b),b,a,(a/b)]
+	mul eq iszero empty_revert jumpi     // fail if (a/b) * b != a. else [(a/b)]
 
 	// Return our new number.
 	0x00 mstore // Store our number in memory.
@@ -71,10 +71,10 @@
 /// @notice mod two numbers
 /// @dev Revert if b==0
 #define macro MATH__MOD(empty_revert) = takes(0) returns (1) {
-	0x04 calldataload 0x24 calldataload 	// [b,a]
-	0x00 dup2 eq													// [(b==0),b,a]
-	empty_revert jumpi										// fail if b==0. else [b,a]
-	swap1 mod															// [(a mod b)]
+	0x04 calldataload 0x24 calldataload  // [b,a]
+	0x00 dup2 eq                         // [(b==0),b,a]
+	empty_revert jumpi                   // fail if b==0. else [b,a]
+	swap1 mod                            // [(a mod b)]
 
 	// Return our new number.
 	0x00 mstore // Store our number in memory.

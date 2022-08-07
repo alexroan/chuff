@@ -12,7 +12,6 @@ OpenZeppelin's SafeMath library implemented as a contract in the [Huff language]
   - [Testing](#testing)
 - [Misc](#misc)
   - [Disclaimer](#disclaimer)
-  - [Acknowledgments](#acknowledgments)
   - [Contributing](#contributing)
   - [Resources](#resources)
   - [Helpful Debugging Resources:](#helpful-debugging-resources)
