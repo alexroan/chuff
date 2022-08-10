@@ -4,7 +4,7 @@ pragma solidity ^0.8.15;
 import "foundry-huff/HuffDeployer.sol";
 import "forge-std/Test.sol";
 import "../src/interfaces/ISafeMath.sol";
-import "../src/SolidityMath.sol";
+import "../src/reference/SolidityMath.sol";
 
 contract SafeMathTestBase is Test {
     ISafeMath internal s_huff;
@@ -17,7 +17,8 @@ contract SafeMathTestBase is Test {
     uint256 internal constant ZERO = 0;
 
     function setUp() public {
-        s_huff = ISafeMath(HuffDeployer.config().deploy("SafeMath"));
+        s_huff =
+            ISafeMath(HuffDeployer.config().deploy("examples/BasicCalculator"));
         s_solidity = new SolidityMath();
     }
 }

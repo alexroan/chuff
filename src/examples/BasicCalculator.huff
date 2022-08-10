@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: MIT
+
+#include "../math/SafeMath.huff"
+
+#define function add(uint256,uint256) nonpayable returns (uint256)
+#define function sub(uint256,uint256) nonpayable returns (uint256)
+#define function mul(uint256,uint256) nonpayable returns (uint256)
+#define function div(uint256,uint256) nonpayable returns (uint256)
+#define function mod(uint256,uint256) nonpayable returns (uint256)
+
+/// @notice Determine which function is being called
+#define macro FUNCTION_SIG(math_add, math_sub, math_mul, math_div, math_mod) = takes(0) returns (1) {
+	0x00 calldataload 0xE0 shr // function signature
+	dup1 0x771602f7 eq math_add jumpi
+	dup1 0xb67d77c5 eq math_sub jumpi
+	dup1 0xc8a4ac9c eq math_mul jumpi
+	dup1 0xa391c15b eq math_div jumpi
+	dup1 0xf43f523a eq math_mod jumpi
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+
+	FUNCTION_SIG(math_add, math_sub, math_mul, math_div, math_mod)
+
+	math_add:
+		MATH__ADD(empty_revert)
+
+	math_sub:
+		MATH__SUB(empty_revert)
+
+	math_mul:
+		MATH__MUL(empty_revert)
+	
+	math_div:
+		MATH__DIV(empty_revert)
+
+	math_mod:
+		MATH__MOD(empty_revert)
+	
+	empty_revert:
+		0x00 0x00 revert
+
+}
