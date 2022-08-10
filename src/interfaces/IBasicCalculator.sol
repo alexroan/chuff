@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
 
-interface ISafeMath {
+interface IBasicCalculator {
     function add(uint256, uint256) external returns (uint256);
 
     function mul(uint256, uint256) external returns (uint256);

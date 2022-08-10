@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
 
-import "../interfaces/ISafeMath.sol";
+import "../interfaces/IBasicCalculator.sol";
 
-contract SolidityMath is ISafeMath {
+contract SolidityBasicCalculator is IBasicCalculator {
     function add(uint256 a, uint256 b)
         external
         pure
