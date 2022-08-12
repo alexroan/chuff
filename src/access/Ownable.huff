@@ -10,9 +10,9 @@
 }
 
 /* Methods */
-#define macro OWNABLE_SET_OWNER() = takes (1) returns (0) {
-  [OWNER_POINTER] sstore
-}
+// #define macro OWNABLE_SET_OWNER() = takes (1) returns (0) {
+//   [OWNER_POINTER] sstore
+// }
 
 #define macro OWNABLE_GET_OWNER() = takes (0) returns (1) {
   [OWNER_POINTER] sload

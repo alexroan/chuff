@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: MIT
+
+#include "../access/Ownable.huff"
+
+#define function restricted() nonpayable returns (uint256)
+#define function open() nonpayable returns (uint256)
+
+#define constant RESTRICTED_CONST = 0x7b
+#define constant OPEN_CONST = 0x1
+
+#define macro CONSTRUCTOR() = takes(0) returns (0) {
+  // Set msg.sender as the owner of the contract.
+  OWNABLE_CONSTRUCTOR()
+}
+
+#define macro OWNED__RESTRICTED() = takes(0) returns (0) {
+  ONLY_OWNER()
+
+  [RESTRICTED_CONST] 0x00 mstore // Store our number in memory.
+  0x20 0x00 return // Return it.
+}
+
+#define macro OWNED__OPEN() = takes(0) returns (0) {
+  [OPEN_CONST] 0x00 mstore // Store our number in memory.
+  0x20 0x00 return // Return it.
+}
+
+/// @notice Determine which function is being called
+#define macro FUNCTION_SIG(restricted, open) = takes(0) returns (1) {
+	0x00 calldataload 0xE0 shr // function signature
+	dup1 0x7072c6b1 eq restricted jumpi
+	dup1 0xfcfff16f eq open jumpi
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+  FUNCTION_SIG(restricted, owned)
+
+  restricted:
+    OWNED__RESTRICTED()
+  
+  open:
+    OWNED__OPEN()
+}
