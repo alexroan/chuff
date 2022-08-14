@@ -5,4 +5,6 @@ interface IBasicOwned {
     function restricted() external returns (uint256);
 
     function open() external returns (uint256);
+
+    function owner() external returns (address);
 }

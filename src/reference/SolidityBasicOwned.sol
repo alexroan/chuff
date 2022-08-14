@@ -15,4 +15,13 @@ contract SolidityBasicOwned is IBasicOwned, Ownable {
     function open() external pure override returns (uint256) {
         return OPEN_CONST;
     }
+
+    function owner()
+        public
+        view
+        override (IBasicOwned, Ownable)
+        returns (address)
+    {
+        return s_owner;
+    }
 }
