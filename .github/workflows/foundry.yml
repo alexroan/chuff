@@ -14,6 +14,11 @@ jobs:
         with:
           version: nightly
 
+      - name: Install Huff
+        uses: huff-language/huff-toolchain@v2
+        with:
+          version: nightly
+
       - name: Install dependencies
         run: forge install
 
