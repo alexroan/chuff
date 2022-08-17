@@ -33,9 +33,9 @@
 
 /// @notice Determine which function is being called
 #define macro FUNCTION_SIG(restricted, open, owner) = takes(0) returns (1) {
-	0x00 calldataload 0xE0 shr // function signature
-	dup1 0x7072c6b1 eq restricted jumpi
-	dup1 0xfcfff16f eq open jumpi
+  0x00 calldataload 0xE0 shr // function signature
+  dup1 0x7072c6b1 eq restricted jumpi
+  dup1 0xfcfff16f eq open jumpi
   dup1 0x8da5cb5b eq owner jumpi
 }
 
