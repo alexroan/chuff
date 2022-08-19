@@ -1,10 +1,13 @@
-# Huff Math
+# Chuff - Huff Utility Contracts
 
-OpenZeppelin's SafeMath library implemented as a contract in the [Huff language](https://github.com/huff-language).
+Common Solidity contract patterns, based on Openzeppelin's contract library, implemented in the Huff language:
+
+- Access Control: `access/Ownable.huff`
+- Safe Math: `math/SafeMath.huff`
 
 Spoiler: [It's cheap](https://github.com/alexroan/huff-math/blob/master/.gas-snapshot#L1-L2).
 
-# Table Of Contents
+## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
@@ -18,9 +21,9 @@ Spoiler: [It's cheap](https://github.com/alexroan/huff-math/blob/master/.gas-sna
   - [Resources](#resources)
   - [Helpful Debugging Resources:](#helpful-debugging-resources)
 
-# Getting Started
+## Getting Started
 
-## Requirements
+### Requirements
 
 Please install the following:
 
@@ -34,7 +37,7 @@ Please install the following:
     -   You'll know you've done it right if you can run `huffc --version` and get an output like: `huffc 0.2.0`
 
 
-## Quickstart
+### Quickstart
 
 ```sh
 git clone https://github.com/alexroan/huff-math.git
@@ -42,7 +45,7 @@ cd huff-math
 make
 ```
 
-## Gas Comparison
+### Gas Comparison
 
 Gas comparison tests between the Huff implementation and native Solidity checked math can be found in the [test files](https://github.com/alexroan/huff-math/tree/master/test). The naming convention for these comparisons are:
 
@@ -53,28 +56,28 @@ function test<function_name>Gas[Huff/Solidity]() public {...}
 Results can be found in [.gas-snapshot](https://github.com/alexroan/huff-math/blob/master/.gas-snapshot) in the repo root.
 
 
-## Testing
+### Testing
 
 `make test` or `forge test`
 
-# Misc
+## Misc
 
-## Disclaimer
+### Disclaimer
 
 > None of the contacts have been audited, use at your own risk.
 
-## Contributing
+### Contributing
 
 Contributions are always welcome! Open a PR or an issue!
 
 Thank You!
 
-## Resources
+### Resources
 
 -   [Foundry Documentation](https://book.getfoundry.sh/)
 -   [Huff Documentation](https://docs.huff.sh/)
 
-## Helpful Debugging Resources:
+### Helpful Debugging Resources:
 
 - [evm.codes](https://www.evm.codes/)
 - [evm.codes playground](https://www.evm.codes/playground)
