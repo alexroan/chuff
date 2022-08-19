@@ -6,16 +6,16 @@
 
 /* CONSTRUCTOR */
 #define macro OWNABLE_CONSTRUCTOR() = takes (0) returns (0) {
-  caller [OWNER_POINTER] sstore
+	caller [OWNER_POINTER] sstore
 }
 
 /* Methods */
 // #define macro OWNABLE_SET_OWNER() = takes (1) returns (0) {
-//   [OWNER_POINTER] sstore
+//     [OWNER_POINTER] sstore
 // }
 
 #define macro OWNABLE_GET_OWNER() = takes (0) returns (1) {
-  [OWNER_POINTER] sload
+	[OWNER_POINTER] sload
 }
 
 #define macro ONLY_OWNER() = takes(0) returns(0) {
