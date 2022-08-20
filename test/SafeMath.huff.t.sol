@@ -33,6 +33,18 @@ contract SafeMathTest__div is SafeMathTestBase {
         uint256 result = s_solidity.div(FOUR, TWO);
     }
 
+    function testDivFuzz(uint256 a, uint256 b) public {
+        vm.assume(a > 0 && b > 0);
+        uint256 divResult;
+        uint256 mulCheckResult;
+        unchecked {
+            divResult = a / b;
+            mulCheckResult = divResult * b;
+        }
+        vm.assume(mulCheckResult == a);
+        assertEq(s_huff.div(a, b), divResult);
+    }
+
     function testDivSuccess() public {
         assertEq(s_huff.div(FOUR, TWO), FOUR / TWO);
     }
@@ -62,6 +74,11 @@ contract SafeMathTest__sub is SafeMathTestBase {
         uint256 result = s_solidity.sub(FOUR, TWO);
     }
 
+    function testSubFuzz(uint256 a, uint256 b) public {
+        vm.assume(a >= b);
+        assertEq(s_huff.sub(a, b), a - b);
+    }
+
     function testSubSuccess() public {
         assertEq(s_huff.sub(TWO, ONE), (TWO - ONE));
     }
@@ -84,6 +101,18 @@ contract SafeMathTest__mul is SafeMathTestBase {
 
     function testMulGasSolidity() public {
         uint256 result = s_solidity.mul(FOUR, TWO);
+    }
+
+    function testMulFuzz(uint256 a, uint256 b) public {
+        vm.assume(a > 0 && b > 0);
+        uint256 multiplyResult;
+        uint256 divCheckResult;
+        unchecked {
+            multiplyResult = a * b;
+            divCheckResult = multiplyResult / b;
+        }
+        vm.assume(divCheckResult == a);
+        assertEq(s_huff.mul(a, b), multiplyResult);
     }
 
     function testMulSuccess() public {
@@ -115,6 +144,15 @@ contract SafeMathTest__add is SafeMathTestBase {
         uint256 result = s_solidity.add(FOUR, TWO);
     }
 
+    function testAddFuzz(uint256 a, uint256 b) public {
+        uint256 result;
+        unchecked {
+            result = a + b;
+        }
+        vm.assume(result >= a && result >= b);
+        assertEq(s_huff.add(a, b), result);
+    }
+
     function testAddSuccess() public {
         assertEq(s_huff.add(TWO, ONE), (TWO + ONE));
     }
@@ -137,6 +175,11 @@ contract SafeMathTest__mod is SafeMathTestBase {
 
     function testModGasSolidity() public {
         uint256 result = s_solidity.mod(MAX, FOUR);
+    }
+
+    function testModFuzz(uint256 a, uint256 b) public {
+        vm.assume(b > 0);
+        assertEq(s_huff.mod(a, b), a % b);
     }
 
     function testModSuccess() public {
