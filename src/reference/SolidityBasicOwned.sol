@@ -16,12 +16,7 @@ contract SolidityBasicOwned is IBasicOwned, Ownable {
         return OPEN_CONST;
     }
 
-    function owner()
-        public
-        view
-        override (IBasicOwned, Ownable)
-        returns (address)
-    {
+    function owner() public view override (IBasicOwned, Ownable) returns (address) {
         return s_owner;
     }
 }
