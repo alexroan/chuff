@@ -17,9 +17,7 @@ contract SafeMathTestBase is Test {
     uint256 internal constant ZERO = 0;
 
     function setUp() public {
-        s_huff = IBasicCalculator(
-            HuffDeployer.config().deploy("examples/BasicCalculator")
-        );
+        s_huff = IBasicCalculator(HuffDeployer.config().deploy("examples/BasicCalculator"));
         s_solidity = new SolidityBasicCalculator();
     }
 }
